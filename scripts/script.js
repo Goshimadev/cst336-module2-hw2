@@ -109,14 +109,6 @@ class SlotMachine {
         `You didn't win on your last pull. Better luck next time!`
       );
     }
-
-    // updateSpinButton(){
-
-    // }
-
-    // updateInfo(){
-
-    // }
   }
 }
 
@@ -160,7 +152,12 @@ $(document).ready(function () {
     slotMachine.placeBet(betAmt);
     $("#machine-img").find("img").fadeOut().fadeIn();
     $(".slot").effect("shake", { direction: "up", times: 1 });
-    $("#spin").html("Stop");
+
+    $("#spin").prop('disabled',true).html("Starting...");
+    
+    setTimeout(function(){
+      $("#spin").prop('disabled',false).html("Stop");
+    }, 1000);
 
     slotAnimation = setInterval(function () {
       $(".slot").toggleClass("blur");
@@ -170,9 +167,10 @@ $(document).ready(function () {
   }
 
   function stopSpinning() {
-    $("#spin").html("Pull");
+    $("#spin").prop('disabled',true).html("Stopping...");
     $("#machine-img").find("img").fadeOut().fadeIn();
     setTimeout(function () {
+      $("#spin").prop('disabled',false).html("Pull");
       $(".slot").effect("shake", { direction: "up", times: 1 });
       $(".slot").removeClass("blur");
       clearInterval(slotAnimation);
@@ -191,6 +189,7 @@ $(document).ready(function () {
     //short ciruit
     if ($("#spin").html() == "Restart") {
       slotMachine.initializeGame();
+      $(".slot").effect("shake", { direction: "up", times: 1 });
       return;
     } else if (!isSpinning && !validateBet(betAmt, walletAmt)) {
       return;
