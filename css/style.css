@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+
+/* font-family: 'Electrolize', sans-serif;
+font-family: 'Press Start 2P', cursive; */
+
+main{
+    font-family: 'Electrolize', sans-serif;
+    display:flex;
+}
+
+#slot-machine {
+    position:relative;
+    width: 816px;
+    height: 624px;
+    background-image:url(../img/slot-machine-2.png);
+}
+
+#slot-screen{
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 25%;
+}
+
+.slot {
+    width: 96px;
+    height: 96px;
+    /* border: 2px solid black; */
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+#slot-symbol-0 {
+    margin-left: 1rem;
+}
+
+.slot-img-1 {
+    background-image:url(../img/slot-machine-1.png);
+}
+
+.slot-img-2 {
+    background-image:url(../img/slot-machine-2.png);
+}
+
+.blur {
+    filter:blur(.5rem);
+    transition: blur 1s;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="scripts/script.js"></script>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div id="slot-machine">
+        <span id="machine-img"><img src="../img/slot-machine-1.png" /></span>
+        <div id="slot-screen">
+          <div class="slot"><span id="slot-symbol-0"></span></div>
+          <div class="slot"><span id="slot-symbol-1"></span></div>
+          <div class="slot"><span id="slot-symbol-2"></span></div>
+        </div>
+      </div>
+      <div id="hud">
+        <div id="info">Info:</div>
+        <div id="results"></div>
+        <div id="money">Wallet: $<span id="wallet"></span></div>
+        <div id="bet-form">
+          How much would you like to bet?
+          <span id="bet-field"></span>
+        </div>
+        <div id="pull">
+          <button type="button" id="spin">Pull</button>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
