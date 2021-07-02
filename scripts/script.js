@@ -1,7 +1,3 @@
-function sleep(ms) {
-  return new Promise();
-}
-
 class SlotMachine {
   // Model
   constructor() {
@@ -94,8 +90,6 @@ $(document).ready(function () {
   var screenAnimation;
   isSpinning = false;
   slotMachine.initializeGame();
-
-  // Testing
 
   // Variables
 
