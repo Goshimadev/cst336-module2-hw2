@@ -24,7 +24,7 @@ class SlotMachine {
     this.updateBetField();
 
     $("#results span").html("");
-    $("#info span").html('Click "Pull" to start the game!');
+    $("#info span").html('Click <kbd>"Pull"</kbd> to start the game!');
     $("#spin").html("Pull");
   }
 
@@ -94,16 +94,16 @@ class SlotMachine {
   }
 
   updateBetField() {
-    $("#bet-field").html(`<input type="number" id="bet">`);
+    $("#bet-field").html(`<input type="number" id="bet" class="form-control">`);
   }
 
   updateResults(isWinner, winnings = 0) {
     if (this.gameOver()) {
       $("#results span").html(
-        `You've lost the last round and run out of money... Click "Restart" to play again!`
+        `You've lost the last round and run out of money... Click <kbd>"Restart"</kbd> to play again!`
       );
     } else if (isWinner) {
-      $("#results span").html(`Congratulations! You have won $${winnings}.`);
+      $("#results span").html(`Congratulations! You have won $${winnings.toFixed(2)}.`);
     } else {
       $("#results span").html(
         `You didn't win on your last pull. Better luck next time!`

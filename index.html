@@ -17,9 +17,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="scripts/script.js"></script>
   </head>
-  <body>
-    <header><h1>SLOT MACHINE 2045</h1></header>
-    <main>
+  <body class="container-fluid">
+    <header class="jumbotron">
+      <h1>SPACE SLOTS 2045</h1>
+    </header>
+    <main class="container">
       <div id="slot-machine">
         <span id="machine-img"><img src="../img/slot-machine-1.png" /></span>
         <div id="slot-screen">
@@ -30,17 +32,23 @@
       </div>
       <div id="hud">
         <div id="info">Info: <span></span></div>
-        <div id="results">Results: <span></span> </div>
-        <div id="money">Wallet: $<span id="wallet"></span></div>
-        <div id="bet-form">
-          How much would you like to bet?
+        <div id="results"><br />Results: <span></span></div>
+        <div id="money"><br />Wallet: $<span id="wallet"></span></div>
+        <div id="bet-form" class="form-group">
+          <br /><label for="bet">How much would you like to bet?</label>
           <span id="bet-field"></span>
         </div>
         <div id="pull">
-          <button type="button" id="spin"></button>
+          <br /><button
+            type="button"
+            id="spin"
+            class="btn-lg btn-block"
+          ></button>
         </div>
       </div>
     </main>
-    <footer><h3>FOOTER</h3></footer>
+    <footer>
+      <h3>FOOTER</h3>
+    </footer>
   </body>
 </html>
