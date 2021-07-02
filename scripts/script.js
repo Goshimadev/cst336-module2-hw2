@@ -11,7 +11,7 @@ class SlotMachine {
     };
     this.slotScreen = ["7", "7", "7"];
     this.wallet = 1000;
-    this.baseWinnings = 100;
+    this.currentBet = 0;
   }
 
   // Controller
@@ -22,6 +22,11 @@ class SlotMachine {
     this.updateBetField();
   }
 
+  placeBet(betAmt) {
+    this.wallet -= betAmt;
+    this.updateWallet();
+  }
+
   randomizeSlotScreens() {
     for (let x = 0; x < this.numScreens; x++) {
       this.slotScreen[x] =
@@ -29,7 +34,7 @@ class SlotMachine {
     }
   }
 
-  winningsCalculation() {
+  winningsCalculation(betAmt = 0) {
     let multiplier = 0;
 
     let slotResults = this.slotScreen.reduce(function (results, symbol) {
@@ -57,13 +62,13 @@ class SlotMachine {
     ) {
       multiplier = 1.25;
     }
-
-    this.wallet += this.baseWinnings * multiplier;
-    console.log(`${this.wallet}`);
+    let winnings = betAmt * multiplier;
+    this.wallet += winnings;
+    this.updateResults(multiplier > 0 ? true : false, winnings);
   }
 
-  isGameOver(){
-      return this.wallet == 0;
+  isGameOver() {
+    return this.wallet == 0;
   }
 
   // view
@@ -76,25 +81,64 @@ class SlotMachine {
   }
 
   updateWallet() {
-      $("#wallet").html(`${this.wallet}`);
+    $("#wallet").html(`${this.wallet}`);
   }
 
-  updateBetField(){
-      $("#bet-field").html(`<input type="number" id="bet" min="1" max="${this.wallet}">`);
+  updateBetField() {
+    $("#bet-field").html(
+      `<input type="number" id="bet" min="1" max="${this.wallet}">`
+    );
+  }
+
+  updateResults(isWinner, winnings = 0) {
+    if (isWinner) {
+      $("#results span").html(`Congratulations! You have won $${winnings}`);
+    } else {
+      $("#results span").html(
+        `You didn't win on your last pull. Better luck next time!`
+      );
+    }
   }
 }
 
 $(document).ready(function () {
   // Initialize Game
   const slotMachine = new SlotMachine();
-  var screenAnimation;
-  isSpinning = false;
   slotMachine.initializeGame();
 
   // Variables
+  var slotAnimation = null;
+  var isSpinning = false;
+  var betAmt = 0;
 
   // Functions
+  function pull() {
+    if (isSpinning) {
+      stopSpinning();
+    } else {
+      startSpinning();
+    }
+
+    isSpinning = !isSpinning;
+  }
+
+  function validateBet(betAmt, walletAmt) {
+    if (betAmt == "") {
+      $("#info span").html("You have to enter a bet in order to play!");
+      return false;
+    } else if (betAmt <= 0) {
+      $("#info span").html("You cannot bet 0 or less dollars!");
+      return false;
+    } else if (betAmt > walletAmt) {
+      $("#info span").html("You don't have enough money to make that bet!");
+      return false;
+    }
+
+    return true;
+  }
+
   function startSpinning() {
+    slotMachine.placeBet(betAmt);
     $("#machine-img").find("img").fadeOut().fadeIn();
     $(".slot").effect("shake", { direction: "up", times: 1 });
     $("#spin").html("Stop");
@@ -114,7 +158,7 @@ $(document).ready(function () {
       $(".slot").removeClass("blur");
       clearInterval(slotAnimation);
       slotMachine.updateSlotScreens();
-      slotMachine.winningsCalculation();
+      slotMachine.winningsCalculation(betAmt);
       slotMachine.updateWallet();
       console.log(`Stop: ${slotMachine.slotScreen}`);
     }, 1000);
@@ -122,7 +166,13 @@ $(document).ready(function () {
 
   // Event Listeners
   $("#spin").on("click", function () {
-    isSpinning ? stopSpinning() : startSpinning();
-    isSpinning = isSpinning ? false : true;
+    betAmt = $("#bet").val();
+    let walletAmt = slotMachine.wallet;
+
+    if (!validateBet(betAmt, walletAmt)) {
+      return;
+    }
+
+    pull();
   });
 });
