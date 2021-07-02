@@ -10,16 +10,22 @@ class SlotMachine {
       bar: "img/slot-symbol4.png",
     };
     this.slotScreen = ["7", "7", "7"];
-    this.wallet = 1000;
+    this.wallet = 0;
     this.currentBet = 0;
   }
 
   // Controller
   initializeGame() {
+    this.wallet = 1000;
+
     this.randomizeSlotScreens();
     this.updateSlotScreens();
     this.updateWallet();
     this.updateBetField();
+
+    $("#results span").html("");
+    $("#info span").html('Click "Pull" to start the game!');
+    $("#spin").html("Pull");
   }
 
   placeBet(betAmt) {
@@ -63,12 +69,15 @@ class SlotMachine {
       multiplier = 1.25;
     }
     let winnings = betAmt * multiplier;
-    this.wallet += winnings;
+    this.wallet += Number(winnings.toFixed(2));
     this.updateResults(multiplier > 0 ? true : false, winnings);
   }
 
-  isGameOver() {
-    return this.wallet == 0;
+  gameOver() {
+    if (this.wallet <= 0) {
+      $("#spin").html("Restart");
+      return true;
+    }
   }
 
   // view
@@ -81,23 +90,33 @@ class SlotMachine {
   }
 
   updateWallet() {
-    $("#wallet").html(`${this.wallet}`);
+    $("#wallet").html(`${this.wallet.toFixed(2)}`);
   }
 
   updateBetField() {
-    $("#bet-field").html(
-      `<input type="number" id="bet" min="1" max="${this.wallet}">`
-    );
+    $("#bet-field").html(`<input type="number" id="bet">`);
   }
 
   updateResults(isWinner, winnings = 0) {
-    if (isWinner) {
-      $("#results span").html(`Congratulations! You have won $${winnings}`);
+    if (this.gameOver()) {
+      $("#results span").html(
+        `You've lost the last round and run out of money... Click "Restart" to play again!`
+      );
+    } else if (isWinner) {
+      $("#results span").html(`Congratulations! You have won $${winnings}.`);
     } else {
       $("#results span").html(
         `You didn't win on your last pull. Better luck next time!`
       );
     }
+
+    // updateSpinButton(){
+
+    // }
+
+    // updateInfo(){
+
+    // }
   }
 }
 
@@ -169,7 +188,11 @@ $(document).ready(function () {
     betAmt = $("#bet").val();
     let walletAmt = slotMachine.wallet;
 
-    if (!validateBet(betAmt, walletAmt)) {
+    //short ciruit
+    if ($("#spin").html() == "Restart") {
+      slotMachine.initializeGame();
+      return;
+    } else if (!isSpinning && !validateBet(betAmt, walletAmt)) {
       return;
     }
 
