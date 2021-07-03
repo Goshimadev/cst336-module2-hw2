@@ -1,5 +1,8 @@
+/**
+ * 
+ */
 class SlotMachine {
-  // Model
+
   constructor() {
     this.numScreens = 3;
     this.symbols = ["7", "cherries", "bell", "bar"];
@@ -14,7 +17,6 @@ class SlotMachine {
     this.currentBet = 0;
   }
 
-  // Controller
   initializeGame() {
     this.wallet = 1000;
 
@@ -80,7 +82,6 @@ class SlotMachine {
     }
   }
 
-  // view
   updateSlotScreens() {
     for (let x = 0; x < this.numScreens; x++) {
       $(`#slot-symbol-${x}`).html(
@@ -103,7 +104,9 @@ class SlotMachine {
         `You've lost the last round and run out of money... Click <kbd>"Restart"</kbd> to play again!`
       );
     } else if (isWinner) {
-      $("#results span").html(`Congratulations! You have won $${winnings.toFixed(2)}.`);
+      $("#results span").html(
+        `Congratulations! You have won $${winnings.toFixed(2)}.`
+      );
     } else {
       $("#results span").html(
         `You didn't win on your last pull. Better luck next time!`
@@ -153,10 +156,10 @@ $(document).ready(function () {
     $("#machine-img").find("img").fadeOut().fadeIn();
     $(".slot").effect("shake", { direction: "up", times: 1 });
 
-    $("#spin").prop('disabled',true).html("Starting...");
-    
-    setTimeout(function(){
-      $("#spin").prop('disabled',false).html("Stop");
+    $("#spin").prop("disabled", true).html("Starting...");
+
+    setTimeout(function () {
+      $("#spin").prop("disabled", false).html("Stop");
     }, 1000);
 
     slotAnimation = setInterval(function () {
@@ -167,10 +170,10 @@ $(document).ready(function () {
   }
 
   function stopSpinning() {
-    $("#spin").prop('disabled',true).html("Stopping...");
+    $("#spin").prop("disabled", true).html("Stopping...");
     $("#machine-img").find("img").fadeOut().fadeIn();
     setTimeout(function () {
-      $("#spin").prop('disabled',false).html("Pull");
+      $("#spin").prop("disabled", false).html("Pull");
       $(".slot").effect("shake", { direction: "up", times: 1 });
       $(".slot").removeClass("blur");
       clearInterval(slotAnimation);
