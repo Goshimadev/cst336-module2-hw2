@@ -6,11 +6,31 @@ font-family: 'Press Start 2P', cursive; */
 
 body {
   background-image: url(../img/background.png);
+  background-attachment: fixed;
+  
 }
 
 main {
   font-family: "Electrolize", sans-serif;
   display: flex;
+  align-self: end;
+
+  min-width: 1280px;
+  /* max-height: 720px; */
+}
+
+
+header {
+  font-family: "Press Start 2P", cursive;
+  color:white !important;
+
+  background-image: url(../img/header.jpg);
+  background-attachment: fixed;
+  background-size: contain, cover;
+
+  background-size: 100%;
+  min-width: 1280px;
+
 }
 
 #slot-machine {
@@ -60,4 +80,28 @@ main {
   flex-direction: column;
   margin-top: auto;
   margin-bottom: auto;
+  background-color: grey;
+  color: white;
+  padding: 1rem;
+  border: 2px solid white;
+  font-size: 2rem;
 }
+
+#spin {
+  color: black;
+}
+
+strong {
+  text-decoration: underline;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+footer img {
+    width:50%;
+    height: auto;
+}
+
