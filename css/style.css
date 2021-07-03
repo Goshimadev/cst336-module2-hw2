@@ -1,107 +1,120 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
-
-/* font-family: 'Electrolize', sans-serif;
-font-family: 'Press Start 2P', cursive; */
-
-body {
-  background-image: url(../img/background.png);
-  background-attachment: fixed;
-  
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+#hud
+{
+	background-color: rgba(0, 0, 0, 0.7);
+	border: 2px solid white;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	font-size: 2rem;
+	margin-bottom: auto;
+	margin-top: auto;
+	padding: 1rem;
 }
-
-main {
-  font-family: "Electrolize", sans-serif;
-  display: flex;
-  align-self: end;
-
-  min-width: 1280px;
-  /* max-height: 720px; */
+#slot-machine
+{
+	background-image: url(../img/slot-machine-2.png);
+	height: 624px;
+	position: relative;
+	width: 816px;
 }
-
-
-header {
-  font-family: "Press Start 2P", cursive;
-  color:white !important;
-
-  background-image: url(../img/header.jpg);
-  background-attachment: fixed;
-  background-size: contain, cover;
-
-  background-size: 100%;
-  min-width: 1280px;
-
+#slot-screen
+{
+	display: flex;
+	left: 25%;
+	position: absolute;
+	top: 50%;
 }
-
-#slot-machine {
-  position: relative;
-  width: 816px;
-  height: 624px;
-  background-image: url(../img/slot-machine-2.png);
+#slot-symbol-0
+{
+	margin-left: 1rem;
 }
-
-#slot-screen {
-  position: absolute;
-  display: flex;
-  top: 50%;
-  left: 25%;
+#spin
+{
+	color: black;
 }
-
-.slot {
-  width: 96px;
-  height: 96px;
-  margin-left: 2rem;
-  margin-right: 2rem;
+.blur
+{
+	filter: blur(0.5rem);
+	transition: blur 1s;
 }
-
-#slot-symbol-0 {
-  margin-left: 1rem;
+.hidden
+{
+	display: none;
 }
-
-.slot-img-1 {
-  background-image: url(../img/slot-machine-1.png);
+.slot
+{
+	height: 96px;
+	margin-left: 2rem;
+	margin-right: 2rem;
+	width: 96px;
 }
-
-.slot-img-2 {
-  background-image: url(../img/slot-machine-2.png);
+.slot-img-1
+{
+	background-image: url(../img/slot-machine-1.png);
 }
-
-.blur {
-  filter: blur(0.5rem);
-  transition: blur 1s;
+.slot-img-2
+{
+	background-image: url(../img/slot-machine-2.png);
 }
-
-.hidden {
-  display: none;
+.success {
+  background-color: darkgreen;
 }
+.warning {
+  background-color:darkred;
+}
+body
+{
+	background-attachment: fixed;
+	background-image: url(../img/background.png);
 
-#hud {
-  display: flex;
-  flex-direction: column;
-  margin-top: auto;
-  margin-bottom: auto;
-  background-color: grey;
+	background-repeat: repeat;
+	/* background-position: 0 0; */
+	/* background-size: auto 100%; */
+	animation: space-effect 300s linear infinite;
+}
+@keyframes space-effect{
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -3000px -3000px;
+	}
+}
+footer
+{
+  background-color: rgba(0, 0, 0, 0.7);
+  border-style: solid;
   color: white;
+	display: flex;
+	justify-content: center;
+  margin-top: 1rem;
   padding: 1rem;
-  border: 2px solid white;
-  font-size: 2rem;
 }
-
-#spin {
-  color: black;
-}
-
-strong {
+footer a, a:hover, a:visited{
+  color:white;
   text-decoration: underline;
 }
-
-footer {
-    display: flex;
-    justify-content: center;
+footer p {
+  margin-left: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-
-footer img {
-    width:50%;
-    height: auto;
+header
+{
+	background-attachment: fixed;
+	background-image: url(../img/header.jpg);
+	background-size: 100%;
+	background-size: contain, cover;
+	color: white !important;
+	font-family: "Press Start 2P", cursive;
+	min-width: 1280px;
 }
-
+main
+{
+	align-self: end;
+	display: flex;
+	font-family: "Electrolize", sans-serif;
+	min-width: 1280px;
+}
