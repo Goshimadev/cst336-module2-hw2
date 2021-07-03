@@ -1,8 +1,7 @@
 /**
- * 
+ *
  */
 class SlotMachine {
-
   constructor() {
     this.numScreens = 3;
     this.symbols = ["7", "cherries", "bell", "bar"];
@@ -25,9 +24,7 @@ class SlotMachine {
     this.updateWallet();
     this.updateBetField();
 
-    $("#results span").html("");
-    $("#info span").html('Click <kbd>"Pull"</kbd> to start the game!');
-    $("#spin").html("Pull");
+    this.resetMessages();
   }
 
   placeBet(betAmt) {
@@ -80,6 +77,12 @@ class SlotMachine {
       $("#spin").html("Restart");
       return true;
     }
+  }
+
+  resetMessages() {
+    $("#results span").html("");
+    $("#info span").html('Click <kbd>"Pull"</kbd> to start the game!');
+    $("#spin").html("Pull");
   }
 
   updateSlotScreens() {
@@ -139,15 +142,18 @@ $(document).ready(function () {
   function validateBet(betAmt, walletAmt) {
     if (betAmt == "") {
       $("#info span").html("You have to enter a bet in order to play!");
+      $("#info span").addClass("warning");
       return false;
     } else if (betAmt <= 0) {
       $("#info span").html("You cannot bet 0 or less dollars!");
+      $("#info span").addClass("warning");
       return false;
     } else if (betAmt > walletAmt) {
       $("#info span").html("You don't have enough money to make that bet!");
+      $("#info span").addClass("warning");
       return false;
     }
-
+    $("#info span").removeClass("warning");
     return true;
   }
 
@@ -155,7 +161,6 @@ $(document).ready(function () {
     slotMachine.placeBet(betAmt);
     $("#machine-img").find("img").fadeOut().fadeIn();
     $(".slot").effect("shake", { direction: "up", times: 1 });
-
     $("#spin").prop("disabled", true).html("Starting...");
 
     setTimeout(function () {
@@ -173,31 +178,37 @@ $(document).ready(function () {
     $("#spin").prop("disabled", true).html("Stopping...");
     $("#machine-img").find("img").fadeOut().fadeIn();
     setTimeout(function () {
-      $("#spin").prop("disabled", false).html("Pull");
-      $(".slot").effect("shake", { direction: "up", times: 1 });
-      $(".slot").removeClass("blur");
       clearInterval(slotAnimation);
       slotMachine.updateSlotScreens();
       slotMachine.winningsCalculation(betAmt);
       slotMachine.updateWallet();
+      $("#spin").prop("disabled", false).html("Pull");
+      $(".slot").effect("shake", { direction: "up", times: 1 });
+      $(".slot").removeClass("blur");
       console.log(`Stop: ${slotMachine.slotScreen}`);
     }, 1000);
   }
 
   // Event Listeners
   $("#spin").on("click", function () {
-    betAmt = $("#bet").val();
-    let walletAmt = slotMachine.wallet;
+
 
     //short ciruit
     if ($("#spin").html() == "Restart") {
       slotMachine.initializeGame();
       $(".slot").effect("shake", { direction: "up", times: 1 });
       return;
-    } else if (!isSpinning && !validateBet(betAmt, walletAmt)) {
-      return;
     }
 
-    pull();
+    if (isSpinning) {
+      pull();
+    } else  {
+      betAmt = $("#bet").val();
+      let walletAmt = slotMachine.wallet;
+      if(validateBet(betAmt,walletAmt)){
+        slotMachine.resetMessages();
+        pull();
+      }
+    }
   });
 });

@@ -58,6 +58,9 @@
 {
 	background-image: url(../img/slot-machine-2.png);
 }
+.warning {
+  background-color:darkred;
+}
 body
 {
 	background-attachment: fixed;
