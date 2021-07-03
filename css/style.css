@@ -1,102 +1,91 @@
 @import url("https://fonts.googleapis.com/css2?family=Electrolize&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-#hud
-{
-	background-color: rgba(0, 0, 0, 0.7);
-	border: 2px solid white;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	font-size: 2rem;
-	margin-bottom: auto;
-	margin-top: auto;
-	padding: 1rem;
-	/* justify-content: center; */
-	align-items: center;
+#hud {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  margin-bottom: auto;
+  margin-top: auto;
+  padding: 1rem;
 }
-#slot-machine
-{
-	background-image: url(../img/slot-machine-2.png);
-	height: 624px;
-	position: relative;
-	width: 816px;
+#slot-machine {
+  background-image: url(../img/slot-machine-2.png);
+  height: 624px;
+  position: relative;
+  width: 816px;
 }
-#slot-screen
-{
-	display: flex;
-	left: 25%;
-	position: absolute;
-	top: 50%;
+#slot-screen {
+  display: flex;
+  left: 25%;
+  position: absolute;
+  top: 50%;
 }
-#slot-symbol-0
-{
-	margin-left: 1rem;
+#slot-symbol-0 {
+  margin-left: 1rem;
 }
-#spin
-{
-	color: black;
+#spin {
+  color: black;
 }
-.blur
-{
-	filter: blur(0.5rem);
-	transition: blur 1s;
+.blur {
+  filter: blur(0.5rem);
+  transition: blur 1s;
 }
-.hidden
-{
-	display: none;
+.hidden {
+  display: none;
 }
-.slot
-{
-	height: 96px;
-	margin-left: 2rem;
-	margin-right: 2rem;
-	width: 96px;
+.slot {
+  height: 96px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  width: 96px;
 }
-.slot-img-1
-{
-	background-image: url(../img/slot-machine-1.png);
+.slot-img-1 {
+  background-image: url(../img/slot-machine-1.png);
 }
-.slot-img-2
-{
-	background-image: url(../img/slot-machine-2.png);
+.slot-img-2 {
+  background-image: url(../img/slot-machine-2.png);
 }
 .success {
   background-color: darkgreen;
 }
 .warning {
-  background-color:darkred;
+  background-color: darkred;
 }
 audio {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
-body
-{
-	background-attachment: fixed;
-	background-image: url(../img/background.png);
+body {
+  background-attachment: fixed;
+  background-image: url(../img/background.png);
 
-	background-repeat: repeat;
-	animation: space-effect 300s linear infinite;
+  background-repeat: repeat;
+  animation: space-effect 300s linear infinite;
 }
-@keyframes space-effect{
-	from {
-		background-position: 0 0;
-	}
-	to {
-		background-position: -3000px -3000px;
-	}
+@keyframes space-effect {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -3000px -3000px;
+  }
 }
-footer
-{
+footer {
   background-color: rgba(0, 0, 0, 0.7);
   border-style: solid;
   color: white;
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
   margin-top: 1rem;
   padding: 1rem;
 }
-footer a, a:hover, a:visited{
-  color:white;
+footer a,
+a:hover,
+a:visited {
+  color: white;
   text-decoration: underline;
 }
 footer p {
@@ -104,20 +93,18 @@ footer p {
   margin-top: auto;
   margin-bottom: auto;
 }
-header
-{
-	background-attachment: fixed;
-	background-image: url(../img/header.jpg);
-	background-size: 100%;
-	background-size: contain, cover;
-	color: white !important;
-	font-family: "Press Start 2P", cursive;
-	min-width: 1280px;
+header {
+  background-attachment: fixed;
+  background-image: url(../img/header.jpg);
+  background-size: 100%;
+  background-size: contain, cover;
+  color: white !important;
+  font-family: "Press Start 2P", cursive;
+  min-width: 1280px;
 }
-main
-{
-	align-self: end;
-	display: flex;
-	font-family: "Electrolize", sans-serif;
-	min-width: 1280px;
+main {
+  align-self: end;
+  display: flex;
+  font-family: "Electrolize", sans-serif;
+  min-width: 1280px;
 }
