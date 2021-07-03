@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 #hud
 {
-	background-color: grey;
+	background-color: rgba(0, 0, 0, 0.7);
 	border: 2px solid white;
 	color: white;
 	display: flex;
@@ -58,6 +58,9 @@
 {
 	background-image: url(../img/slot-machine-2.png);
 }
+.success {
+  background-color: darkgreen;
+}
 .warning {
   background-color:darkred;
 }
@@ -68,7 +71,7 @@ body
 }
 footer
 {
-  background-color: grey;
+  background-color: rgba(0, 0, 0, 0.7);
   border-style: solid;
   color: white;
 	display: flex;
@@ -101,8 +104,4 @@ main
 	display: flex;
 	font-family: "Electrolize", sans-serif;
 	min-width: 1280px;
-}
-strong
-{
-	text-decoration: underline;
 }

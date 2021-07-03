@@ -61,8 +61,6 @@ class SlotMachine {
       multiplier = 2;
     } else if (
       slotResults["bar"] == 2 ||
-      slotResults["bell"] == 2 ||
-      slotResults["cherries"] == 2 ||
       slotResults["7"] == 2
     ) {
       multiplier = 1.25;
@@ -81,6 +79,7 @@ class SlotMachine {
 
   resetMessages() {
     $("#results span").html("");
+    $("#results span").removeClass("warning success");
     $("#info span").html('Click <kbd>"Pull"</kbd> to start the game!');
     $("#spin").html("Pull");
   }
@@ -102,14 +101,18 @@ class SlotMachine {
   }
 
   updateResults(isWinner, winnings = 0) {
+    
     if (this.gameOver()) {
       $("#results span").html(
         `You've lost the last round and run out of money... Click <kbd>"Restart"</kbd> to play again!`
       );
+      $("#results span").addClass("warning");
+      console.log("restarted");
     } else if (isWinner) {
       $("#results span").html(
         `Congratulations! You have won $${winnings.toFixed(2)}.`
       );
+      $("#results span").addClass("success");
     } else {
       $("#results span").html(
         `You didn't win on your last pull. Better luck next time!`
@@ -157,11 +160,15 @@ $(document).ready(function () {
     return true;
   }
 
+  //remember to remove the classes again
+
   function startSpinning() {
     slotMachine.placeBet(betAmt);
     $("#machine-img").find("img").fadeOut().fadeIn();
     $(".slot").effect("shake", { direction: "up", times: 1 });
     $("#spin").prop("disabled", true).html("Starting...");
+    $("#results span").removeClass("warning success");
+    $("#results span").html("Spinning...");
 
     setTimeout(function () {
       $("#spin").prop("disabled", false).html("Stop");
@@ -178,13 +185,13 @@ $(document).ready(function () {
     $("#spin").prop("disabled", true).html("Stopping...");
     $("#machine-img").find("img").fadeOut().fadeIn();
     setTimeout(function () {
+      $("#spin").prop("disabled", false).html("Pull");
+      $(".slot").effect("shake", { direction: "up", times: 1 });
+      $(".slot").removeClass("blur");
       clearInterval(slotAnimation);
       slotMachine.updateSlotScreens();
       slotMachine.winningsCalculation(betAmt);
       slotMachine.updateWallet();
-      $("#spin").prop("disabled", false).html("Pull");
-      $(".slot").effect("shake", { direction: "up", times: 1 });
-      $(".slot").removeClass("blur");
       console.log(`Stop: ${slotMachine.slotScreen}`);
     }, 1000);
   }
