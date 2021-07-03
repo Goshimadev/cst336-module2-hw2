@@ -20,8 +20,8 @@
   <body class="container-fluid">
     <header class="jumbotron">
       <h1>SPACE SLOTS 2045</h1>
+      <h5><em>In the year 2045, only slots remain.</em></h5>
     </header>
-    <div id="animationTest"></div>
     <main class="container">
       <div id="slot-machine">
         <span id="machine-img"><img src="../img/slot-machine-1.png" /></span>
@@ -32,27 +32,43 @@
         </div>
       </div>
       <div id="hud">
-        <div id="info"><strong>INFO</strong>: <span></span></div>
-        <div id="results"><br /><strong>RESULTS</strong>: <span></span></div>
-        <div id="money">
-          <br /><strong>CASH</strong>: $<span id="wallet"></span>
+        <div id="hud-components">
+          <div id="info"><strong>INFO</strong>: <span></span></div>
+          <div id="results"><br /><strong>RESULTS</strong>: <span></span></div>
+          <div id="money">
+            <br /><strong>CASH</strong>: $<span id="wallet"></span>
+          </div>
+          <div id="bet-form" class="form-group">
+            <br /><label for="bet">How much would you like to bet?</label>
+            <span id="bet-field"></span>
+          </div>
+          <div id="pull">
+            <br /><button
+              type="button"
+              id="spin"
+              class="btn-lg btn-block"
+            ></button>
+          </div>
         </div>
-        <div id="bet-form" class="form-group">
-          <br /><label for="bet">How much would you like to bet?</label>
-          <span id="bet-field"></span>
-        </div>
-        <div id="pull">
-          <br /><button
-            type="button"
-            id="spin"
-            class="btn-lg btn-block"
-          ></button>
+        <div id="audio-player" class="accordion">
+          <audio controls muted>
+            <source src="../sound/moon.mp3" type="audio/mpeg" />
+            Error loading player...
+          </audio>
         </div>
       </div>
     </main>
     <footer>
-      <img src="img/csumb-logo-white-trans.png">
-      <p>CST336 Internet Programming. 2021&copy; Shum <br />Slot Machine assets from: <a href="https://cazwolf.itch.io/">Caz Wolf</a></p>
+      <img src="img/csumb-logo-white-trans.png" />
+      <p>
+        CST336 Internet Programming. 2021&copy; Shum <br />Slot Machine assets
+        from: <a href="https://cazwolf.itch.io/">Caz Wolf</a> <br />
+        Music (Ducktales - The Moon) from:
+        <a
+          href="https://downloads.khinsider.com/game-soundtracks/album/duck-tales"
+          >Video Game Music</a
+        >
+      </p>
     </footer>
   </body>
 </html>
