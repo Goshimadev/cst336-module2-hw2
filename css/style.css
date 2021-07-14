@@ -57,6 +57,7 @@
 }
 audio {
   margin-top: 1rem;
+  display: none;
 }
 body {
   background-attachment: fixed;
